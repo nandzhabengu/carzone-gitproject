@@ -75,11 +75,15 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "carzone_db",
+        "USER": "postgres",
+        "PASSWORD": "M4rlyn88##88",
+        "HOST": "localhost",
+        },
     }
-}
+
 
 
 # Password validation
@@ -120,6 +124,13 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+
+# Media files
+# https://docs.djangoproject.com/en/5.0/topics/files/
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
