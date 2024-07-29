@@ -25,7 +25,7 @@ def cars(request):
     return render(request, 'cars/cars.html',data)
 
 def car_detail(request,id):
-    single_car = get_object_or_404(Car, pk=1)
+    single_car = get_object_or_404(Car, pk=id)
     data = {
         'single_car' : single_car,
     }
