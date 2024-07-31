@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(ob5(ov3#4-i#em-d!!^mw%#pbup(9=@gq!=oegzygnl62yuym'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -65,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     # Downloaded Middleware
     'allauth.account.middleware.AccountMiddleware',
@@ -94,16 +96,26 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "carzone_db",
-        "USER": "postgres",
-        "PASSWORD": "M4rlyn88##88",
-        "HOST": "localhost",
-        },
-    }
+#DATABASES = {
+#     "default": {
+#        "ENGINE": "django.db.backends.postgresql",
+#        "NAME": "carzone_db",
+#        "USER": "postgres",
+#        "PASSWORD": "M4rlyn88##88",
+#        "HOST": "localhost",
+#        },
+#    }
 
+# Heroku settings
+#cwd = os.getcwd() # Gets the current working directory the file is running from.
+#if cwd == '/app' or cwd[:4] == '/tmp':
+     # import dj_database_url to help configure the database on Heroku
+#    DATABASES = {
+#        'default' : dj_database_url.config(default='postgres://user:pass@localhost/dbname')
+#    }
+
+
+DATABASES = {'default': dj_database_url.config(default='postgres://postgres:M4rlyn88##88@localhost/carzone_db')}
 
 
 # Password validation
@@ -175,3 +187,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'nandzha.bengu@gmail.com'
 EMAIL_HOST_PASSWORD = 'bukk kfpe uvbn bhvp'
 EMAIL_USE_TLS = True
+
+
+#whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
